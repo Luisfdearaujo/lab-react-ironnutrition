@@ -4,8 +4,8 @@ import { useState } from "react";
 function AddFoodForm({ addNewFood }) {
 	const [name, setName] = useState("");
 	const [image, setImage] = useState("");
-	const [calories, setCalories] = useState();
-	const [servings, setServings] = useState();
+	const [calories, setCalories] = useState(0);
+	const [servings, setServings] = useState(0);
 
 	const handleName = (event) => setName(event.target.value);
 	const handleImage = (event) => setImage(event.target.value);
@@ -18,13 +18,12 @@ function AddFoodForm({ addNewFood }) {
 
 		//Get the data from the state/inputs
 		const newFood = {
-			//_id: title + director, //just to troubleshoot key_id(console)
 			name: name,
 			image: image,
 			calories: calories,
 			servings: servings,
 		};
-
+		//Add the food to the list -> calling the function from App.js
 		addNewFood(newFood);
 
 		//console.log(`newMovie`, newMovie);
@@ -34,7 +33,6 @@ function AddFoodForm({ addNewFood }) {
 		setCalories();
 		setServings();
 	};
-    
 
 	return (
 		<form onSubmit={handleSubmit}>

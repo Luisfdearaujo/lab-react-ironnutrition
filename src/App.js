@@ -9,16 +9,18 @@ function App() {
 	const [allFoods, setAllFoods] = useState(foodsJSN);
 	const [foods, setFoods] = useState(foodsJSN);
 
+	//Add food to array
 	const addNewFood = (newFood) => {
 		const updatedFoods = [newFood, ...foods];
 		setFoods(updatedFoods);
 	};
 
-	// const deleteFood = (foodId) => {
-  // const deleteFood = (foodName) =>
-  
-	// };
-
+	const deleteFood = (name) => {
+		const filteredFoods = foods.filter((food) => {
+			return food.name !== name;
+		});
+		setFoods(filteredFoods);
+	};
 
 	const filterFoodList = (char) => {
 		let filteredFood;
@@ -30,8 +32,6 @@ function App() {
 		setFoods(filteredFood);
 	};
 
-
-
 	return (
 		<div className="App">
 			<Search filterFoodList={filterFoodList} />
@@ -39,7 +39,7 @@ function App() {
 			{foods.map((food) => {
 				return (
 					<>
-						<FoodBox foodObj={food} />
+						<FoodBox foodObj={food} deleteFood={deleteFood} />
 					</>
 				);
 			})}
